@@ -82,4 +82,11 @@ Grid search across signal types, correlation thresholds, and momentum/reversion 
 ## File Structure
 research/fx/
 ├── dcc_signal.py       # Signal implementation
-└── README.md           # This file
+└── README.md           # This 
+
+---
+
+## Next Steps
+- [ ] Out-of-sample validation on held-out data
+- [ ] Extend instrument universe
+- [ ] Refine trailing stop parameters
