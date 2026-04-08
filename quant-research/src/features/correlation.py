@@ -2,7 +2,6 @@
 src/features/correlation.py
 
 Volatility and dynamic correlation features.
-Extracted from research/latam_fx/exploration.ipynb.
 
 Classes:
     GARCHModel   — fits GARCH(1,1) per instrument, exposes conditional sigmas

@@ -56,13 +56,11 @@ Hedge fund due diligence relies heavily on backward-looking analysis, yet alloca
 ![Feature importance metrics](results/figures/tab14_feature_importance_metrics.png)
 
 ## Repository Structure
-
-```
-├── data/                       Raw and intermediate CSVs
-├── notebooks/                  Exploratory analysis
+├── data/
+│   ├── raw/                    Raw input CSVs
+│   └── processed/              Intermediate feature sets
 ├── results/
-│   ├── figures/                Confusion matrices, importance plots
-│   └── models/                 Serialised XGBoost models (.pkl)
+│   └── figures/                Confusion matrices, importance plots
 ├── src/
 │   ├── config.py               Constants, paths, hyperparameters
 │   ├── data_loader.py          Ingestion, filtering, peer-group benchmarks
@@ -72,10 +70,8 @@ Hedge fund due diligence relies heavily on backward-looking analysis, yet alloca
 │   └── main.py                 CLI pipeline orchestrator
 ├── requirements.txt
 └── README.md
-```
 
 ## Quick Start
-
 ```bash
 # Full pipeline: data → features → training → evaluation
 cd src
@@ -103,10 +99,8 @@ Parameters are centralised in [`src/config.py`](src/config.py):
 
 ## Tech Stack
 
-Python 3.10+ · pandas · NumPy · SciPy · scikit-learn · XGBoost · matplotlib · seaborn
+`Python` · `pandas` · `NumPy` · `SciPy` · `scikit-learn` · `XGBoost` · `matplotlib` · `seaborn`
 
 ## Reference
-This repository contains the code for the following published paper:
 
-Becker-Foss, E. (2020). Performance and Reporting Predictability of Hedge Funds. 
-*Journal of Forecasting*. https://onlinelibrary.wiley.com/doi/10.1002/for.3122?af=R
+Becker-Foss, E. (2020). Performance and Reporting Predictability of Hedge Funds. *Journal of Forecasting*. https://onlinelibrary.wiley.com/doi/10.1002/for.3122?af=R
