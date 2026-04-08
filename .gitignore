@@ -4,3 +4,16 @@ data/raw/
 *.env
 __pycache__/
 .DS_Store
+# Credentials
+twitter_credentials.json
+*.json
+
+# Data
+*.csv
+glove.6B.*
+
+# Checkpoints
+*.h5
+*.keras
+__pycache__/
+.ipynb_checkpoints/.claude/

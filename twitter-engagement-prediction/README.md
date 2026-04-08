@@ -13,7 +13,7 @@ Alternative data — social media, news, satellite imagery — is increasingly c
 ## Data
 
 - **Source:** Twitter API — historical tweets from U.S. politicians (e.g. AOC)
-- **Scope:** Original tweets only (no retweets)
+- **Scope:** ~15k original tweets (no retweets), chronological 80/20 train/test split
 - **Target variable:** Binary — "High" or "Low" engagement relative to the user's median retweet count
 - **Features:**
   - **Text:** Raw tweet content (cleaned, tokenized)
@@ -25,52 +25,28 @@ Alternative data — social media, news, satellite imagery — is increasingly c
 
 Systematic evaluation of increasingly sophisticated architectures:
 
-| # | Model | Text Representation | Notes |
-|---|-------|-------------------|-------|
-| 1 | Baseline Dense | Unigram multi-hot | Simplest bag-of-words |
-| 2 | GloVe Embedding | Pre-trained GloVe 100d | Transfer learning from general corpus |
-| 3 | Trained Embedding | Custom 64d embedding | Learned from tweet data |
-| 4 | BERT Embedding | Pre-trained BERT (768d) | Contextual representations |
-| 5 | Bigram Dense | Bigram multi-hot | Captures word pairs |
-| 6 | BERT + Metadata | BERT + weekday/hour/quote/reply | Concatenated multi-input model |
+| # | Model | Text Representation | Test Accuracy |
+|---|-------|-------------------|---------------|
+| 1 | Baseline Dense | Unigram multi-hot | 59.95% |
+| 2 | GloVe Embedding | Pre-trained GloVe 100d | 54.64% |
+| 3 | Trained Embedding | Custom 64d | 58.96% |
+| 4 | BERT Embedding | Pre-trained BERT (768d) | 59.93% |
+| 5 | Bigram Dense | Bigram multi-hot | 61.98% |
+| 6 | BERT + Metadata | BERT + weekday/hour/quote/reply | **64.57%** |
 
-All models use categorical cross-entropy loss, Adam optimizer, and are evaluated on a chronological train/test split (80/20).
+All models use categorical cross-entropy loss, Adam optimizer, and 30 training epochs.
 
 ---
 
 ## Key Results
 
-- BERT embeddings outperform simpler representations for tweet classification
-- Adding metadata (timing, reply context) to text features improves prediction
-- Engagement varies significantly by hour of day and weekday — temporal features carry signal
+- The concatenated BERT + Metadata model achieves the best performance at **64.57%** test accuracy
+- Adding metadata (timing, reply context) to text features provides a ~5pp lift over BERT alone
+- Bigram representations outperform unigram baselines, confirming that word-pair context carries signal
+- GloVe underperforms simpler approaches on short tweet text, likely due to domain mismatch
 
 ---
 
 ## Tech Stack
 
-`Python` · `TensorFlow/Keras` · `BERT (TF Hub)` · `GloVe` · `Twitter API` · `scikit-learn` · `pandas`
-
----
-
-## Repository Structure
-twitter-engagement-prediction/
-├── notebooks/
-│   └── model_comparison.ipynb    # Full analysis notebook
-├── src/
-│   ├── data_loader.py            # Tweet retrieval and preprocessing
-│   ├── features.py               # Text vectorization, BERT features
-│   └── models.py                 # Model architectures (1-6)
-├── results/
-│   └── model_comparison.csv      # Accuracy results across models
-├── README.md
-├── requirements.txt
-└── .gitignore
-
----
-
-## Setup
-```bash
-pip install -r requirements.txt
-```
-
-Note: Twitter API credentials are required for data retrieval and are excluded from this repository.
+`Python` · `TensorFl
