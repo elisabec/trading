@@ -17,3 +17,4 @@ glove.6B.*
 *.keras
 __pycache__/
 .ipynb_checkpoints/.claude/
+.claude/
