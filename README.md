@@ -10,7 +10,7 @@ The philosophy follows a disciplined pipeline:
 ---
 
 ## Repository Structure
-'''
+```
 quant-research/
 ├── src/                            # Reusable research library
 │   ├── features/
@@ -23,7 +23,7 @@ quant-research/
 └── fx/                         # FX mean-reversion signal
 ├── dcc_signal.py           # Signal implementation
 └── README.md               # Methodology and results
-'''
+```
 
 ---
 
