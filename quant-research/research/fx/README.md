@@ -80,9 +80,11 @@ Grid search across signal types, correlation thresholds, and momentum/reversion 
 ---
 
 ## File Structure
+```
 research/fx/
 ├── dcc_signal.py       # Signal implementation
-└── README.md           # This 
+└── README.md           # This file
+```
 
 ---
 

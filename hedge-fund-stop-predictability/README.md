@@ -56,6 +56,7 @@ Hedge fund due diligence relies heavily on backward-looking analysis, yet alloca
 ![Feature importance metrics](results/figures/tab14_feature_importance_metrics.png)
 
 ## Repository Structure
+```
 ├── data/
 │   ├── raw/                    Raw input CSVs
 │   └── processed/              Intermediate feature sets
@@ -70,6 +71,7 @@ Hedge fund due diligence relies heavily on backward-looking analysis, yet alloca
 │   └── main.py                 CLI pipeline orchestrator
 ├── requirements.txt
 └── README.md
+```
 
 ## Quick Start
 ```bash
