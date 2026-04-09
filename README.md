@@ -1,65 +1,40 @@
-# quant-research
+markdown# Trading & Quantitative Research
 
 > **Disclaimer:** All work in this repository is my own. It was developed independently on personal time and does not reflect the views, proprietary methods, or intellectual property of any employer, past or present.
 
-A personal quantitative research platform for developing, backtesting, and iterating on systematic trading strategies.
-
-The philosophy follows a disciplined pipeline:
-**Data → Features → Signal → Backtest → Risk Control → Iterate**
+A collection of quantitative research projects spanning predictive modelling, systematic signal development, and deep learning on alternative data.
 
 ---
 
-## Repository Structure
-```
-quant-research/
-├── src/                            # Reusable research library
-│   ├── features/
-│   │   ├── correlation.py          # GARCH volatility, DCC dynamic correlation
-│   │   └── technical.py            # EMA, returns, rolling volatility
-│   └── backtest/
-│       └── engine.py               # Trade simulation, markout analysis, Sharpe, PnL
-│
-└── research/                       # Signal-specific experiments
-└── fx/                         # FX mean-reversion signal
-├── dcc_signal.py           # Signal implementation
-└── README.md               # Methodology and results
-```
+## Projects
+
+### 1. [Hedge Fund Stop Predictability](hedge-fund-stop-predictability/)
+Forecasting hedge fund reporting stops and performance using XGBoost on 5,592 funds and 300k+ monthly observations. Published in the *Journal of Forecasting* (Wiley, 2020).
+
+**87% accuracy** on reporting stop prediction · **75%** on absolute performance · **74%** on relative performance
+
+`XGBoost` · `TimeSeriesSplit CV` · `scikit-learn` · `pandas`
+
+→ Start here: [`src/main.py`](hedge-fund-stop-predictability/src/main.py)
 
 ---
 
-## Research
+### 2. [Quant Research — FX Signal Pipeline](quant-research/)
+Systematic intraday mean-reversion signal using DCC-GARCH dynamic correlations. Includes a reusable backtesting engine, GARCH volatility modelling, and markout analysis.
 
-### FX — DCC-GARCH Mean Reversion Signal
-`research/fx/`
+**Sharpe 3.37** · In-sample backtest with grid search across signal types and parameters
 
-A systematic intraday mean-reversion signal across correlated FX pairs using dynamic conditional correlations. The signal detects high-co-movement regimes and trades temporary dislocations that tend to mean-revert within minutes.
+`GARCH` · `DCC` · `PCA` · `arch` · `NumPy` · `pandas`
 
-See [`research/fx/README.md`](research/fx/README.md) for full methodology and results.
-
----
-
-## `src` Library
-
-Signal-agnostic and designed to be reused across strategies.
-
-| Module | Purpose |
-|---|---|
-| `src/features/correlation.py` | Rolling correlation, GARCH(1,1) volatility, DCC dynamic correlation, PCA regime detection |
-| `src/features/technical.py` | EMA, log returns, rolling volatility, lag features |
-| `src/backtest/engine.py` | Trade simulation, entry/exit logic, trailing stops, markout stats, Sharpe ratio, daily PnL |
+→ Start here: [`research/fx/dcc_signal.py`](quant-research/research/fx/dcc_signal.py)
 
 ---
 
-## Tech Stack
+### 3. [Twitter Engagement Prediction](twitter-engagement-prediction/)
+Predicting tweet engagement using 6 deep learning architectures — from bag-of-words baselines to BERT embeddings with metadata features. Final project for MIT Sloan's Hands-on Deep Learning (15.S04).
 
-`Python` · `NumPy` · `pandas` · `arch` (GARCH) · `scikit-learn` · `matplotlib`
+**64.57% accuracy** with BERT + metadata concatenated model
 
----
+`TensorFlow/Keras` · `BERT` · `GloVe` · `Twitter API` · `scikit-learn`
 
-## Setup
-
-```bash
-git clone <repo>
-cd quant-research
-pip install -r requirements.txt
-```
+→ Start here: [`notebooks/model_comparison.ipynb`](twitter-engagement-prediction/notebooks/model_comparison

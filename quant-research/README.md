@@ -20,9 +20,9 @@ quant-research/
 │       └── engine.py               # Trade simulation, markout analysis, Sharpe, PnL
 │
 └── research/                       # Signal-specific experiments
-└── fx/                         # FX mean-reversion signal
-├── dcc_signal.py           # Signal implementation
-└── README.md               # Methodology and results
+└── fx/                             # FX mean-reversion signal
+├── dcc_signal.py                   # Signal implementation
+└── README.md                       # Methodology and results
 ```
 ---
 
