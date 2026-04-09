@@ -16,9 +16,9 @@ Flow per bar
 Usage
 -----
     from src.backtest.engine import run_backtest
-    from src.signal.latam_dcc import LatamDCCStrategy
+    from research.fx.dcc_signal import DCCStrategy
 
-    strategy = LatamDCCStrategy(instruments=INSTRUMENTS)
+    strategy = DCCStrategy(instruments=INSTRUMENTS)
     strategy.initialize(config)
 
     trades, stats, cum_pnl = run_backtest(

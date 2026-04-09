@@ -49,7 +49,7 @@ All models use categorical cross-entropy loss, Adam optimizer, and 30 training e
 
 ## Quick start
 
-→ Start here: [`notebooks/model_comparison.ipynb`](twitter-engagement-prediction/notebooks/model_comparison
+→ Start here: [`notebooks/model_comparison.ipynb`](twitter-engagement-prediction/notebooks/model_comparison)
 
 ---
 

@@ -1,4 +1,4 @@
-markdown# Trading & Quantitative Research
+# Trading & Quantitative Research
 
 > **Disclaimer:** All work in this repository is my own. It was developed independently on personal time and does not reflect the views, proprietary methods, or intellectual property of any employer, past or present.
 
@@ -37,4 +37,4 @@ Predicting tweet engagement using 6 deep learning architectures — from bag-of-
 
 `TensorFlow/Keras` · `BERT` · `GloVe` · `Twitter API` · `scikit-learn`
 
-→ Start here: [`notebooks/model_comparison.ipynb`](twitter-engagement-prediction/notebooks/model_comparison
+→ Start here: [`notebooks/model_comparison.ipynb`](twitter-engagement-prediction/notebooks/model_comparison)
