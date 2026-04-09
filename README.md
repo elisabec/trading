@@ -15,7 +15,7 @@ Forecasting hedge fund reporting stops and performance using XGBoost on 5,592 fu
 
 `XGBoost` · `TimeSeriesSplit CV` · `scikit-learn` · `pandas`
 
-→ Start here: [`src/main.py`](hedge-fund-stop-predictability/src/main.py)
+→ Start here: [`src/main.py`](hedge-fund-stop-predictability/src/main.py) · [Full README](hedge-fund-stop-predictability/README.md)
 
 ---
 
@@ -26,7 +26,7 @@ Systematic intraday mean-reversion signal using DCC-GARCH dynamic correlations. 
 
 `GARCH` · `DCC` · `PCA` · `arch` · `NumPy` · `pandas`
 
-→ Start here: [`research/fx/dcc_signal.py`](quant-research/research/fx/dcc_signal.py)
+→ Start here: [`research/fx/dcc_signal.py`](quant-research/research/fx/dcc_signal.py) · [Full README](quant-research/README.md)
 
 ---
 
@@ -37,4 +37,4 @@ Predicting tweet engagement using 6 deep learning architectures — from bag-of-
 
 `TensorFlow/Keras` · `BERT` · `GloVe` · `Twitter API` · `scikit-learn`
 
-→ Start here: [`notebooks/model_comparison.ipynb`](twitter-engagement-prediction/notebooks/model_comparison)
+→ Start here: [`notebooks/model_comparison.ipynb`](twitter-engagement-prediction/notebooks/model_comparison.ipynb) · [Full README](twitter-engagement-prediction/README.md)
