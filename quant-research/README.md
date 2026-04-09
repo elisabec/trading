@@ -1,5 +1,7 @@
 # quant-research
 
+> **Disclaimer:** All work in this repository is my own. It was developed independently on personal time and does not reflect the views, proprietary methods, or intellectual property of any employer, past or present.
+
 A personal quantitative research platform for developing, backtesting, and iterating on systematic trading strategies.
 
 The philosophy follows a disciplined pipeline:
@@ -8,19 +10,20 @@ The philosophy follows a disciplined pipeline:
 ---
 
 ## Repository Structure
+```
 quant-research/
-├── src/                        # Reusable research library
+├── src/                            # Reusable research library
 │   ├── features/
-│   │   ├── correlation.py      # GARCH volatility, DCC dynamic correlation
-│   │   └── technical.py        # EMA, returns, rolling volatility
+│   │   ├── correlation.py          # GARCH volatility, DCC dynamic correlation
+│   │   └── technical.py            # EMA, returns, rolling volatility
 │   └── backtest/
-│       └── engine.py           # Trade simulation, markout analysis, Sharpe, PnL
+│       └── engine.py               # Trade simulation, markout analysis, Sharpe, PnL
 │
-└── research/                   # Signal-specific experiments
-└── fx/                     # FX mean-reversion signal
-├── dcc_signal.py       # Signal implementation
-└── README.md           # Methodology and results
-
+└── research/                       # Signal-specific experiments
+└── fx/                             # FX mean-reversion signal
+├── dcc_signal.py                   # Signal implementation
+└── README.md                       # Methodology and results
+```
 ---
 
 ## Research
@@ -53,6 +56,7 @@ Signal-agnostic and designed to be reused across strategies.
 ---
 
 ## Setup
+
 ```bash
 git clone <repo>
 cd quant-research

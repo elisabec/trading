@@ -47,6 +47,12 @@ All models use categorical cross-entropy loss, Adam optimizer, and 30 training e
 
 ---
 
+## Quick start
+
+→ Start here: [`notebooks/model_comparison.ipynb`](notebooks/model_comparison.ipynb)
+
+---
+
 ## Tech Stack
 
 `Python` · `TensorFl

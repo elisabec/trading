@@ -1,5 +1,7 @@
 # Trading & Quantitative Research
 
+> **Disclaimer:** All work in this repository is my own. It was developed independently on personal time and does not reflect the views, proprietary methods, or intellectual property of any employer, past or present.
+
 A collection of quantitative research projects spanning predictive modelling, systematic signal development, and deep learning on alternative data.
 
 ---
@@ -13,6 +15,8 @@ Forecasting hedge fund reporting stops and performance using XGBoost on 5,592 fu
 
 `XGBoost` · `TimeSeriesSplit CV` · `scikit-learn` · `pandas`
 
+→ Start here: [`src/main.py`](hedge-fund-stop-predictability/src/main.py) · [Full README](hedge-fund-stop-predictability/README.md)
+
 ---
 
 ### 2. [Quant Research — FX Signal Pipeline](quant-research/)
@@ -22,6 +26,8 @@ Systematic intraday mean-reversion signal using DCC-GARCH dynamic correlations. 
 
 `GARCH` · `DCC` · `PCA` · `arch` · `NumPy` · `pandas`
 
+→ Start here: [`research/fx/dcc_signal.py`](quant-research/research/fx/dcc_signal.py) · [Full README](quant-research/README.md)
+
 ---
 
 ### 3. [Twitter Engagement Prediction](twitter-engagement-prediction/)
@@ -30,3 +36,5 @@ Predicting tweet engagement using 6 deep learning architectures — from bag-of-
 **64.57% accuracy** with BERT + metadata concatenated model
 
 `TensorFlow/Keras` · `BERT` · `GloVe` · `Twitter API` · `scikit-learn`
+
+→ Start here: [`notebooks/model_comparison.ipynb`](twitter-engagement-prediction/notebooks/model_comparison.ipynb) · [Full README](twitter-engagement-prediction/README.md)

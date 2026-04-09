@@ -1,7 +1,7 @@
 """
 src/signal/latam_dcc.py
 
-LatAm FX NDF mean-reversion signal using DCC-GARCH dynamic correlations.
+FX mean-reversion signal using DCC-GARCH dynamic correlations.
 
 Signal output
 -------------
@@ -39,8 +39,8 @@ import pandas as pd
 from src.signal.base import FXStrategy, PortfolioStatus
 
 
-class LatamDCCStrategy(FXStrategy):
-    """DCC-correlation mean-reversion signal for LatAm FX NDFs.
+class DCCStrategy(FXStrategy):
+    """DCC-correlation mean-reversion signal for FX.
 
     Instruments are set at construction and fully configurable — the signal
     logic is instrument-agnostic provided the prices DataFrame has the
@@ -56,7 +56,7 @@ class LatamDCCStrategy(FXStrategy):
     ...     "cooldown_bars": 5,
     ...     "trailing_stop_retrace": 0.8,
     ... }
-    >>> strategy = LatamDCCStrategy(instruments=["Brazil", "Columbia", "Chile"])
+    >>> strategy = DCCStrategy(instruments=["Brazil", "Columbia", "Chile"])
     >>> strategy.initialize(config)
     >>> # Engine calls: actions = strategy.next_action(index, row, status)
     """
