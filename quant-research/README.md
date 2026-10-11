@@ -12,18 +12,45 @@ The philosophy follows a disciplined pipeline:
 ## Repository Structure
 ```
 quant-research/
-├── src/                            # Reusable research library
-│   ├── features/
-│   │   ├── correlation.py          # GARCH volatility, DCC dynamic correlation
-│   │   └── technical.py            # EMA, returns, rolling volatility
-│   └── backtest/
-│       └── engine.py               # Trade simulation, markout analysis, Sharpe, PnL
+├── src/                        # Reusable engine — signal-agnostic
+│   ├── strategy.py             # The contract: a strategy = forecast() + PortfolioConfig
+│   ├── pipeline.py             # forecast → construct → simulate → report
+│   ├── data/                   # Loaders (Yahoo) + local Parquet cache
+│   ├── portfolio/              # Portfolio construction: vol targeting, caps, long-only, rebalancing
+│   ├── backtest/
+│   │   ├── portfolio_sim.py    # Daily weight-based simulator (drift, turnover, costs)
+│   │   └── engine.py           # Event-driven intraday engine (FX research)
+│   ├── report/                 # Metrics + one-page tear sheet
+│   └── features/               # GARCH, DCC, EMA, rolling vol
 │
-└── research/                       # Signal-specific experiments
-└── fx/                             # FX mean-reversion signal
-├── dcc_signal.py                   # Signal implementation
-└── README.md                       # Methodology and results
+├── strategies/                 # Alpha models — one folder per strategy
+│   └── trend_etf/              # Cross-asset ETF trend, vol-targeted, long-only
+├── research/fx/                # FX DCC-GARCH mean-reversion research
+├── scripts/run_backtest.py     # CLI: download data, run, write report
+└── tests/                      # Engine correctness + no-lookahead checks
 ```
+
+### How the layers split
+
+| Layer | Question it answers | Where |
+|---|---|---|
+| Alpha model | What do I believe? Forecast in [-1, 1] per instrument | `strategies/<name>/` |
+| Portfolio construction | How much? Sizing, risk budget, caps, long-only, rebalance schedule | `src/portfolio/` |
+| Simulation | What would have happened? Drift, turnover, costs, no lookahead | `src/backtest/portfolio_sim.py` |
+| Reporting | How good is it? Sharpe, drawdown, turnover, tear sheet | `src/report/` |
+| Execution *(planned)* | How do I trade it? Target weights → orders at the broker | `src/execution/` |
+
+A new strategy only implements `forecast()` and chooses a `PortfolioConfig`; everything else is shared.
+
+### Quick start
+
+```bash
+cd quant-research
+pip install -r requirements.txt
+python scripts/run_backtest.py --strategy trend_etf --refresh   # downloads prices, runs, writes results/trend_etf/
+pytest -q                                                       # engine tests on synthetic data
+```
+
 ---
 
 ## Research
@@ -37,15 +64,10 @@ See [`research/fx/README.md`](research/fx/README.md) for full methodology and re
 
 ---
 
-## `src` Library
+### Systematic — Cross-Asset ETF Trend
+`strategies/trend_etf/`
 
-Signal-agnostic and designed to be reused across strategies.
-
-| Module | Purpose |
-|---|---|
-| `src/features/correlation.py` | Rolling correlation, GARCH(1,1) volatility, DCC dynamic correlation, PCA regime detection |
-| `src/features/technical.py` | EMA, log returns, rolling volatility, lag features |
-| `src/backtest/engine.py` | Trade simulation, entry/exit logic, trailing stops, markout stats, Sharpe ratio, daily PnL |
+Time-series momentum on 12 liquid ETFs (equities, Treasuries, credit, inflation-linked, gold, commodities, USD). Forecast = average sign of 1/3/6/12-month returns; inverse-vol sizing to a 10% portfolio vol target; long-only, monthly rebalance, 5 bps costs.
 
 ---
 
