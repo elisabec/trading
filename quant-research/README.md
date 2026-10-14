@@ -22,16 +22,17 @@ Every idea, whether a trend rule, a value factor, an LLM score on filings or a m
 | 3 | Features | `features/` | What do I measure? |
 | 4 | Signals | `signals/` | What do I believe? |
 | 5 | Signal evaluation | `evaluation/` | Is the belief any good? (IC, forward returns) |
-| 6 | Portfolio construction & risk | `portfolio/` | How much of each? |
-| 7 | Backtest | `backtest/` | What would have happened? |
+| 6 | Portfolio construction & risk | `portfolio/` (+ `risk/`) | How much of each, within which limits? |
+| 7 | Backtest & stress test | `backtest/` (+ `risk/`) | What would have happened, also in crises? |
 | 8 | Execution | `execution/` | How do I trade it? |
-| 9 | Monitoring | `monitoring/` | How is it doing live? |
+| 9 | Monitoring & attribution | `monitoring/` (+ `risk/`) | How is it doing live, and why? |
 
 **Beside the pipeline**
 
 | Folder | Role |
 |---|---|
 | `strategies/` | Recipes (yaml): universe + which signals + settings. Wires steps 1–9 for one strategy |
+| `risk/` | Shared risk toolbox: risk model (factor exposures, covariance), stress tests, P&L attribution. Used by steps 6, 7, 9 |
 | `experiments/` | Log of every run: parameters, period, results |
 | `research/` | Notebooks and scratch work |
 
