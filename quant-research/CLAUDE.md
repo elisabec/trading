@@ -19,7 +19,7 @@ Build a systematic strategy and run it as a **timestamped forward-test track rec
 
 Every idea becomes one signal file; everything downstream is shared. Folders (each has a README):
 
-`data/` → `features/` → `signals/` → `evaluation/` → `portfolio/` → `backtest/` → `execution/` → `monitoring/`, plus `strategies/` (recipes, yaml), `experiments/` (run log), `research/` (notebooks).
+1 data sources + 2 data handling (`data/`) → 3 `features/` → 4 `signals/` → 5 `evaluation/` → 6 `portfolio/` (construction & risk) → 7 `backtest/` → 8 `execution/` → 9 `monitoring/`; beside the pipeline: `strategies/` (recipes, yaml), `experiments/` (run log), `research/` (notebooks).
 
 - Panels are pandas DataFrames: dates as rows, assets as columns
 - New idea: copy `signals/_template.py`; new strategy: copy `strategies/_template.yaml`
