@@ -7,3 +7,4 @@ arch
 yfinance
 pyarrow
 pyyaml
+duckdb
