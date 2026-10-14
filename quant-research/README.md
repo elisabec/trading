@@ -5,25 +5,37 @@
 A personal quantitative research platform for developing, backtesting, and iterating on systematic trading strategies.
 
 The philosophy follows a disciplined pipeline:
-**Data → Features → Signal → Backtest → Risk Control → Iterate**
+**Data → Features → Signal → Evaluate → Portfolio → Backtest → Iterate**
 
 ---
 
-## Repository Structure
+## Architecture
+
+Every idea, whether a trend rule, a value factor, an LLM score on filings or a macro regime, becomes **one signal file**. Everything downstream is shared.
+
+```
+DATA ──► FEATURES ──► SIGNALS ──► EVALUATION ──► PORTFOLIO ──► BACKTEST ──► EXECUTION ──► MONITORING
+```
+
+The common currency between layers is a **panel**: a pandas DataFrame with dates as rows and assets as columns.
+
 ```
 quant-research/
-├── src/                            # Reusable research library
-│   ├── features/
-│   │   ├── correlation.py          # GARCH volatility, DCC dynamic correlation
-│   │   └── technical.py            # EMA, returns, rolling volatility
-│   └── backtest/
-│       └── engine.py               # Trade simulation, markout analysis, Sharpe, PnL
-│
-└── research/                       # Signal-specific experiments
-└── fx/                             # FX mean-reversion signal
-├── dcc_signal.py                   # Signal implementation
-└── README.md                       # Methodology and results
+├── data/          raw → clean panels (one loader per source)
+├── features/      reusable ingredients: returns, vol, z-scores, correlations
+├── signals/       ONE FILE PER IDEA → score panel        (template: _template.py)
+├── evaluation/    does the signal predict? IC, forward returns, decay
+├── portfolio/     scores → target weights: sizing, vol target, caps, long-only
+├── backtest/      weights → returns, costs, tear sheet
+├── strategies/    recipes: universe + signals + settings (template: _template.yaml)
+├── experiments/   log of every run: parameters, period, results
+├── execution/     weights → orders at Interactive Brokers
+├── monitoring/    live P&L, positions vs targets, alerts
+└── research/      notebooks and scratch work
 ```
+
+**Signal vs strategy:** a signal is one idea's logic (`signals/trend.py`). A strategy is a recipe that uses one or more signals on a universe with portfolio settings (`strategies/trend_etf.yaml`).
+
 ---
 
 ## Research
@@ -34,18 +46,6 @@ quant-research/
 A systematic intraday mean-reversion signal across correlated FX pairs using dynamic conditional correlations. The signal detects high-co-movement regimes and trades temporary dislocations that tend to mean-revert within minutes.
 
 See [`research/fx/README.md`](research/fx/README.md) for full methodology and results.
-
----
-
-## `src` Library
-
-Signal-agnostic and designed to be reused across strategies.
-
-| Module | Purpose |
-|---|---|
-| `src/features/correlation.py` | Rolling correlation, GARCH(1,1) volatility, DCC dynamic correlation, PCA regime detection |
-| `src/features/technical.py` | EMA, log returns, rolling volatility, lag features |
-| `src/backtest/engine.py` | Trade simulation, entry/exit logic, trailing stops, markout stats, Sharpe ratio, daily PnL |
 
 ---
 

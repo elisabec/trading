@@ -36,8 +36,8 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from src.signal.base import FXStrategy, PortfolioStatus
-from src.backtest.portfolio import Portfolio
+from src.signal.base import FXStrategy, PortfolioStatus  # TODO: module missing from the repo; restore when reviving the FX engine
+from src.backtest.portfolio import Portfolio  # TODO: module missing from the repo; restore when reviving the FX engine
 
 
 # ---------------------------------------------------------------------------

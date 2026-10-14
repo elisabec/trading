@@ -36,7 +36,7 @@ from __future__ import annotations
 import numpy as np
 import pandas as pd
 
-from src.signal.base import FXStrategy, PortfolioStatus
+from src.signal.base import FXStrategy, PortfolioStatus  # TODO: module missing from the repo; restore when reviving the FX engine
 
 
 class DCCStrategy(FXStrategy):
