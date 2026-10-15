@@ -1,0 +1,4 @@
+# downloaded data (re-creatable)
+/data/cache/
+__pycache__/
+.ipynb_checkpoints/

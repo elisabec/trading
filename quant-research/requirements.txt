@@ -1,6 +1,9 @@
 numpy
 pandas
 matplotlib
-arch
-scikit-learn
 scipy
+scikit-learn
+arch
+yfinance
+pyarrow
+pyyaml

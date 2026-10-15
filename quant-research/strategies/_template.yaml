@@ -1,0 +1,28 @@
+# strategies/_template.yaml  —  copy this file to define a new strategy.
+#
+# A strategy is a recipe, not code: WHAT to trade, WHICH signals, HOW to size.
+# Several strategies can reuse the same signal.
+
+name: my_strategy
+
+universe: [SPY, IEF, GLD]          # assets (tickers)
+
+data:
+  prices: yahoo                     # which loader in data/ provides each panel
+
+signals:                            # signal name -> blend weight
+  my_idea:
+    weight: 1.0
+    params: {lookback: 63}
+
+portfolio:
+  target_vol: 0.10                  # annualised
+  max_weight: 0.25                  # per asset
+  long_only: true                   # IRA-compatible
+  rebalance: monthly
+
+backtest:
+  start: 2008-01-01
+  cost_bps: 5                       # one-way cost per unit of turnover
+
+account: none                       # later: ibkr_roth_paper, ibkr_roth_live
