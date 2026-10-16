@@ -5,36 +5,40 @@
 A personal quantitative research platform for developing, backtesting, and iterating on systematic trading strategies.
 
 The philosophy follows a disciplined pipeline:
-**Data → Features → Signal → Evaluate → Portfolio → Backtest → Iterate**
+**Data → Features → Signals → Evaluation → Portfolio & risk → Backtest → Execution → Monitoring**
 
 ---
 
 ## Architecture
 
-Every idea, whether a trend rule, a value factor, an LLM score on filings or a macro regime, becomes **one signal file**. Everything downstream is shared.
+Every idea, whether a trend rule, a value factor, an LLM score on filings or a macro regime, becomes **one signal file**. Everything downstream is shared. Signals never know where the data came from.
 
-```
-DATA ──► FEATURES ──► SIGNALS ──► EVALUATION ──► PORTFOLIO ──► BACKTEST ──► EXECUTION ──► MONITORING
-```
+### The pipeline, step by step, and where each step lives
 
-The common currency between layers is a **panel**: a pandas DataFrame with dates as rows and assets as columns.
+| # | Pipeline step | Folder | Question it answers |
+|---|---|---|---|
+| 1 | Data sources | `data/` (one file per source) | Where does it come from? |
+| 2 | Data handling | `data/` (`store.py`, `update.py`) | Stored, cleaned, one way in |
+| 3 | Features | `features/` | What do I measure? |
+| 4 | Signals | `signals/` | What do I believe? |
+| 5 | Signal evaluation | `evaluation/` | Is the belief any good? (IC, forward returns) |
+| 6 | Portfolio construction & risk | `portfolio/` (+ `risk/`) | How much of each, within which limits? |
+| 7 | Backtest & stress test | `backtest/` (+ `risk/`) | What would have happened, also in crises? |
+| 8 | Execution | `execution/` | How do I trade it? |
+| 9 | Monitoring & attribution | `monitoring/` (+ `risk/`) | How is it doing live, and why? |
 
-```
-quant-research/
-├── data/          raw → clean panels (one loader per source)
-├── features/      reusable ingredients: returns, vol, z-scores, correlations
-├── signals/       ONE FILE PER IDEA → score panel        (template: _template.py)
-├── evaluation/    does the signal predict? IC, forward returns, decay
-├── portfolio/     scores → target weights: sizing, vol target, caps, long-only
-├── backtest/      weights → returns, costs, tear sheet
-├── strategies/    recipes: universe + signals + settings (template: _template.yaml)
-├── experiments/   log of every run: parameters, period, results
-├── execution/     weights → orders at Interactive Brokers
-├── monitoring/    live P&L, positions vs targets, alerts
-└── research/      notebooks and scratch work
-```
+**Beside the pipeline**
 
-**Signal vs strategy:** a signal is one idea's logic (`signals/trend.py`). A strategy is a recipe that uses one or more signals on a universe with portfolio settings (`strategies/trend_etf.yaml`).
+| Folder | Role |
+|---|---|
+| `strategies/` | Recipes (yaml): universe + which signals + settings. Wires steps 1–9 for one strategy |
+| `risk/` | Shared risk toolbox: risk model (factor exposures, covariance), stress tests, P&L attribution. Used by steps 6, 7, 9 |
+| `experiments/` | Log of every run: parameters, period, results |
+| `research/` | Notebooks and scratch work |
+
+The common currency between steps is a **panel**: a pandas DataFrame with dates as rows and assets as columns.
+
+**Signal vs strategy:** a signal is one idea's logic (`signals/trend.py`). A strategy is a recipe that uses one or more signals on a universe with portfolio settings (`strategies/trend_etf.yaml`). Templates: `signals/_template.py`, `strategies/_template.yaml`.
 
 ---
 

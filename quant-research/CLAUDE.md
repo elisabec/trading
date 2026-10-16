@@ -19,7 +19,7 @@ Build a systematic strategy and run it as a **timestamped forward-test track rec
 
 Every idea becomes one signal file; everything downstream is shared. Folders (each has a README):
 
-`data/` → `features/` → `signals/` → `evaluation/` → `portfolio/` → `backtest/` → `execution/` → `monitoring/`, plus `strategies/` (recipes, yaml), `experiments/` (run log), `research/` (notebooks).
+1 data sources + 2 data handling (`data/`) → 3 `features/` → 4 `signals/` → 5 `evaluation/` → 6 `portfolio/` (construction & risk) → 7 `backtest/` → 8 `execution/` → 9 `monitoring/`; beside the pipeline: `risk/` (risk model, stress tests, attribution; used by steps 6, 7, 9), `strategies/` (recipes, yaml), `experiments/` (run log), `research/` (notebooks).
 
 - Panels are pandas DataFrames: dates as rows, assets as columns
 - New idea: copy `signals/_template.py`; new strategy: copy `strategies/_template.yaml`
@@ -59,7 +59,8 @@ Use realistic bid-ask spreads; paper fills for options are optimistic.
 - Small grid only (deltas x hedge budgets above)
 - Choose parameters on an earlier period, validate on a later untouched one
 - Pick from a stable region, not the single best result
-- Always show 2018, 2020 and 2022, plus max drawdown, Sharpe, turnover
+- Always show 2018, 2020 and 2022, plus max drawdown, Sharpe, turnover (stress scenarios live in `risk/`)
+- Log every run in `experiments/`, including every point of a grid search
 
 ## Track record rules
 
