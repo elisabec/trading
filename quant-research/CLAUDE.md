@@ -12,7 +12,7 @@ Build a systematic strategy and run it as a **timestamped forward-test track rec
 - Ugly v0 first: end-to-end before anything is polished
 - Write kill criteria (Sharpe, drawdown) before looking at results
 - Keep code simple enough that I follow every line. Explain choices, build piece by piece
-- Work on branches and open pull requests; never push to `main`
+- Work on branches; never push to `main`. Claude commits on the branch and stops there: no pushing, no pull requests. I review the commits and push / open PRs myself
 - Branch names: `setup/…`, `feat/…`, `fix/…`, `docs/…`; PR titles start the same way (`feat: …`)
 
 ## Architecture

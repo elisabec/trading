@@ -14,8 +14,8 @@ URL = "https://fred.stlouisfed.org/graph/fredgraph.csv?id={series}"
 
 
 def download(series: str) -> str:
-    req = urllib.request.Request(URL.format(series=series), headers={"User-Agent": "Mozilla/5.0"})
-    with urllib.request.urlopen(req, timeout=30) as r:
+    # No custom User-Agent: FRED stalls on a fake browser header but accepts Python's default.
+    with urllib.request.urlopen(URL.format(series=series), timeout=30) as r:
         return r.read().decode("utf-8")
 
 
